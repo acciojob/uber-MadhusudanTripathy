@@ -62,6 +62,7 @@ public class CustomerServiceImpl implements CustomerService {
 		tripBooking.setDistanceInKm(distanceInKm);
 		tripBooking.setDriver(driver);
 		tripBooking.setStatus(TripStatus.CONFIRMED);
+		tripBookingRepository2.save(tripBooking);
 		return tripBooking;
 	}
 
@@ -71,6 +72,7 @@ public class CustomerServiceImpl implements CustomerService {
 		TripBooking tripBooking = tripBookingRepository2.findById(tripId).get();
 		tripBooking.getDriver().getCab().setAvailable(true);
 		tripBooking.setStatus(TripStatus.CANCELED);
+		tripBookingRepository2.save(tripBooking);
 	}
 
 	@Override
@@ -79,5 +81,6 @@ public class CustomerServiceImpl implements CustomerService {
 		TripBooking tripBooking = tripBookingRepository2.findById(tripId).get();
 		tripBooking.getDriver().getCab().setAvailable(true);
 		tripBooking.setStatus(TripStatus.COMPLETED);
+		tripBookingRepository2.save(tripBooking);
 	}
 }
