@@ -8,12 +8,13 @@ public
 class TripBooking{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private int tripBookingId;
 
     private String fromLocation;
     private String toLocation;
     private int distanceInKM;
-    private TripStatus tripStatus;
+    @Enumerated(value = EnumType.STRING)
+    private TripStatus status;
     private int bill;
 
     @ManyToOne
@@ -28,22 +29,22 @@ class TripBooking{
     }
 
     public TripBooking(int id, String fromLocation, String toLocation, int distanceInKM, TripStatus tripStatus, int bill, Driver driver, Customer customer) {
-        this.id = id;
+        this.tripBookingId = id;
         this.fromLocation = fromLocation;
         this.toLocation = toLocation;
         this.distanceInKM = distanceInKM;
-        this.tripStatus = tripStatus;
+        this.status = tripStatus;
         this.bill = bill;
         this.driver = driver;
         this.customer = customer;
     }
 
-    public int getId() {
-        return id;
+    public int getTripBookingId() {
+        return tripBookingId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setTripBookingId(int tripBookingId) {
+        this.tripBookingId = tripBookingId;
     }
 
     public String getFromLocation() {
@@ -70,12 +71,12 @@ class TripBooking{
         this.distanceInKM = distanceInKM;
     }
 
-    public TripStatus getTripStatus() {
-        return tripStatus;
+    public TripStatus getStatus() {
+        return status;
     }
 
-    public void setTripStatus(TripStatus tripStatus) {
-        this.tripStatus = tripStatus;
+    public void setStatus(TripStatus status) {
+        this.status = status;
     }
 
     public int getBill() {
